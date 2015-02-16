@@ -1,6 +1,19 @@
 
 $( document ).ready(function() {
 
+updateIndicator = function() {
+        var key = $("#caption").find('a').attr("href");
+        console.log(key);
+        if (key == undefined) {
+        $("#contentindicator").fadeOut();
+        } else {
+        $("#contentindicator").fadeIn();
+        }
+
+
+}
+
+
         function CaptionState(capdata){
         this.currentIndex=-1;
         this.manualmode=false;
@@ -12,6 +25,7 @@ $( document ).ready(function() {
         if (!animate) {
         console.log("caption is now "+this.currentIndex);
         $("#caption").html(capdata[this.currentIndex].body);
+        updateIndicator();
         } else {
         console.log("caption is now "+this.currentIndex);
         $("#caption").after('<div id="nextcaption">'+ capdata[this.currentIndex].body + '</div>');
@@ -19,6 +33,7 @@ $( document ).ready(function() {
         $("#caption").animate({left: "-300"},{duration: 200, queue: false, complete: function() {
             $("#caption").remove();
             $("#nextcaption").attr('id','caption');
+            updateIndicator();
             }});
         }
 
@@ -38,6 +53,7 @@ $( document ).ready(function() {
         $("#caption").animate({left: "300"},{duration: 200, queue: false, complete: function() {
                 $("#caption").remove();
                 $("#prevcaption").attr('id','caption');
+                updateIndicator();
                 }});
         }
 
@@ -57,7 +73,7 @@ $( document ).ready(function() {
                     this.manualmode = false;
                 }
             }
-
+        updateIndicator();
         }
         }
 
@@ -174,16 +190,6 @@ swipeUp:function(event, direction, distance, duration, fingerCount){
 },
 //Default is 75px, set to 0 for demo so any distance triggers swipe
 threshold:50
-});
-
-
-("#title").swipe( {
-                 //Generic swipe handler for all directions
-swipeLeft:function(event, direction, distance, duration, fingerCount) {
-alert("You swiped " + direction + " " );  
-},
-//Default is 75px, set to 0 for demo so any distance triggers swipe
-threshold:0
 });
 
 /*

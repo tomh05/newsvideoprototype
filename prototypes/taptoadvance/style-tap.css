@@ -26,6 +26,16 @@ video {
     height: auto !important;
 }
 
+#contentindicator{
+    display: none;
+    position:absolute;
+    left:240px;
+    top:160px;
+    z-index: 1;
+}
+
+
+
 #captionholder{
     position:relative;
     width:800px;

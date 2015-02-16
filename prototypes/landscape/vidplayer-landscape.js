@@ -1,6 +1,30 @@
 
 $( document ).ready(function() {
 
+openOverlay = function(){
+        var key = $("#caption div:visible").find('a').attr("href");
+        console.log(key);
+        if (key !== undefined) {
+        console.log("it isnt undefined");
+        $("#overlaycontent").html(overlays[key]);
+        $("#overlay").fadeIn();
+        pop.pause();
+        }
+
+}
+
+updateIndicator = function() {
+        var key = $("#caption div:visible").find('a').attr("href");
+        console.log(key);
+        if (key == undefined) {
+        $("#contentindicator").fadeOut();
+        } else {
+        $("#contentindicator").fadeIn();
+        }
+
+
+}
+
 
 
 $(document).on("tap", "body",function(event){
@@ -39,10 +63,13 @@ $(document).on("tap", "body",function(event){
 
             start: function( event, options ){
                 $( options._container ).show(); // <---
+                updateIndicator();
+
             },
 
             end: function( event, options ){
                 $( options._container ).hide(); // <---
+                updateIndicator();
             },
             _teardown: function( options ) {
                 document.getElementById( options.target ) && document.getElementById( options.target ).removeChild( options._container );
@@ -68,23 +95,28 @@ $(document).on("tap", "body",function(event){
     // clicking on caption links
     $(document).on("click","#caption a", function(e) {
         e.preventDefault();
+        // do nothing - gesture instead
+        /*
         var key = $(this).attr("href");
         $("#overlaycontent").html(overlays[key]);
         $("#overlay").fadeIn();
         pop.pause();
+        */
+    });
+
+    // clicking on caption links
+$(document).on("click","#contentindicator", function(e) {
+        openOverlay();
     });
 
 //  Open an overlay by a gesture
-$(document).on("swipeleft", "#caption",function(event){
-    console.log("up");
-    var key = $("#caption div:visible").find('a').attr("href");
-    console.log(key);
-    if (key !== undefined) {
-        console.log("it isnt undefined");
-        $("#overlaycontent").html(overlays[key]);
-        $("#overlay").fadeIn();
-        pop.pause();
-    }
+$("#videodiv").swipe({
+swipeUp:function(event, direction, distance, duration, fingerCount){
+        console.log("up");
+        openOverlay();
+},
+//Default is 75px, set to 0 for demo so any distance triggers swipe
+threshold:50
 });
 
 

@@ -1,5 +1,25 @@
+function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++) 
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam) 
+        {
+            return sParameterName[1];
+        }
+    }
+}          
 
 $( document ).ready(function() {
+
+    $.getScript('../../articles/'+ getUrlParameter("article")+'/content.js',function() {
+
+        $('#title h1').html(title);
+        $('#video source').attr('src','../../articles/'+ getUrlParameter("article")+'/footage.m4v');
+        $('#video')[0].load();
+
+
 
 openOverlay = function(){
         var key = $("#caption div:visible").find('a').attr("href");
@@ -128,5 +148,4 @@ threshold:50
     });
 
 });
-
-
+});

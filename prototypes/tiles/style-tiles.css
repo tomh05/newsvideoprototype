@@ -1,0 +1,47 @@
+html,body {
+    /*overflow-y: hidden;*/
+}
+
+body{
+    position: relative;
+    background-color: #000;
+    font-family: 'Lato', sans-serif;
+    color: #fff;
+    margin: 0px;
+    data-enhance: 'false';
+}
+
+a {
+    color: #f60;
+}
+
+#container {
+    width:300px;
+    height:500px;
+    margin: 0px auto;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.tile{
+    width:270px;
+    height:270px;
+    margin: 10px ;
+    padding: 5px;
+    position: absolute;
+    overflow: hidden;
+    background-color: #333;
+
+}
+
+#current_tile {
+}
+#new_tile {
+}
+
+#tileholder{
+    position:relative;
+    width:800px;
+    height:900px;
+}

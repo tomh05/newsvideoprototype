@@ -1,0 +1,56 @@
+html,body {
+    /*overflow-y: hidden;*/
+}
+
+body{
+    position: relative;
+    background-color: #000;
+    font-family: 'Lato', sans-serif;
+    color: #fff;
+    margin: 0px;
+    data-enhance: 'false';
+}
+
+a {
+    color: #f60;
+}
+
+#container {
+    width:300px;
+    margin: 0px auto;
+    position: relative;
+    overflow: hidden;
+
+    data-enhance: 'false';
+}
+
+
+#title{
+    background-color:#111;
+    width:100%;
+    padding: 0px 10px;
+    box-sizing: border-box;
+}
+
+.atomblock{
+    background-color:#333;
+    width:100%;
+    padding: 5px 10px;
+    margin: 10px 0px;
+    box-sizing: border-box;
+}
+
+.atomblock[data-child] {
+    border-right:10px #f60 solid;
+}
+
+.atomblock[data-parent] {
+    border-left:10px #f60 solid;
+}
+h1 {
+    font-size:20pt;
+}
+
+#navbar{
+    color: #f60;
+}

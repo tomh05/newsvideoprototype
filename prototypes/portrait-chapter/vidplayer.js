@@ -83,12 +83,11 @@ function CaptionState(capdata){
 
 
 $( document ).ready(function() {
-    console.log("deo");
     // Load article media
     //$.getScript('../../articles/'+ getUrlParameter("article")+'/content.js',function() {
     $('#title h1').html(title);
-    $('#video source').attr('src','../../articles/'+ getUrlParameter("article")+'/footage.m4v');
-    $('#video')[0].load();
+    //$('#video source').attr('src','../../articles/'+ getUrlParameter("article")+'/footage.m4v');
+    //$('#video')[0].load();
 
     var pop = Popcorn("#video");
 
@@ -151,7 +150,9 @@ $( document ).ready(function() {
     })( Popcorn );
 
     // populate chapters
+    console.log(chapters);
     for (var i=0; i< chapters.length;i++) {
+        console.log("creating chapter");
         var a = pop.chapter({
             start: chapters[i].start,
             end: chapters[i].end,

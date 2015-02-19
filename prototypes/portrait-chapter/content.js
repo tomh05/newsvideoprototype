@@ -1,6 +1,6 @@
 var title = "Malaysia jet crashes in east Ukraine conflict zone";
 
-var chapters = [ 
+var chapters = { 
 "0":{"start":"0","end":"20","captions":[
     {"start":"0","end":"5","body":""  }, 
         {"start":"5","end":"9","body":""  }, 
@@ -9,7 +9,7 @@ var chapters = [
     {"start":"0","end":"9","body":""  }, 
     {"start":"0","end":"9","body":""  }, 
     ]}, 
-    ];
+};
 
     var captions = [ 
 {"start":"0","end":"9","body":"A Malaysia Airlines jet carrying 295 people has crashed in east Ukraine on a flight from Amsterdam to Kuala Lumpur."},

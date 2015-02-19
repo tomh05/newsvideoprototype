@@ -1,0 +1,126 @@
+/* prevent scrolling */
+html,body {
+    overflow-y:hidden;
+}
+body{
+    position:relative;
+    background-color: #000;
+    font-family: 'Lato', sans-serif;
+    color: #fff;
+    margin: 0px;
+    width: 100%;
+
+}
+
+a {
+    color: #f60;
+    text-decoration: none;
+}
+
+#container {
+    width:640px;
+    height:360px;
+    margin: 0px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+video {
+    position:relative;
+    /* width: 100% !important; */
+    /* height: auto !important; */
+    width: 640px;
+    height: 360px;
+}
+
+#contentindicator{
+    display: none;
+    position:absolute;
+    left:540px;
+    top:20px;
+    z-index: 1;
+}
+
+
+#caption {
+    position:absolute;
+    width: 400px;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    left:20px;
+    bottom:20px;
+    font-size:28px;
+}
+
+#prevcaption {
+    position:absolute;
+    background-color:#111;
+    width: 400px;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    left:-620px;
+    bottom:20px;
+    font-size:28px;
+}
+
+#nextcaption {
+    position:absolute;
+    background-color:#111;
+    width: 400px;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    left:660px;
+    bottom:20px;
+    font-size:28px;
+}
+
+
+.captionspan {
+    background-color: rgba(0,0,0,0.7);
+}
+
+#overlay {
+    display:none;
+    box-sizing: border-box;
+    position: absolute;
+    width:100%;
+    height:100%;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    background-color: rgba(0,0,0,0.8);
+    
+}
+#overlaycontent{
+    position:relative;
+    box-sizing: border-box;
+    margin:20px;
+    height:80%;
+    padding:5px;
+    background-color: rgba(50,50,50,0.8);
+    overflow-y: auto;
+}
+
+#title{
+    position: absolute;
+    top: 10px;
+    background-color:#111;
+    width:100%;
+    padding: 0px 10px;
+    box-sizing: border-box;
+    z-index: 1;
+}
+
+#videodiv{
+    position: absolute;
+}
+
+h1 {
+    font-size:20pt;
+}
+
+#navbar{
+    color: #f60;
+}

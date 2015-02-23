@@ -1,7 +1,9 @@
 var title = "Malaysia jet crashes in east Ukraine conflict zone";
 
+// layout maps row and column to tile IDs - so layout[row][col] finds the current tile
 var layout = [[1],[3,8,9],[4,5],[6,7]];
 
+// parent, child and level are unused in this example. Body is just an html string.
 var atoms = [
     {"id":"1", "level":"2", "parent":"","child":"", "body":"A Malaysia Airlines jet carrying 295 people has crashed in east Ukraine on a flight from Amsterdam to Kuala Lumpur."},
     {"id":"2", "level":"2", "parent":"","child":"", "body":"There are no signs of survivors at the scene of the crash near the village of Grabovo, in rebel-held territory close to the border with Russia."},

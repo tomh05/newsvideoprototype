@@ -151,16 +151,17 @@ $( document ).ready(function() {
 
     // populate chapters
     console.log(chapters);
-    for (var i=0; i< chapters.length;i++) {
+    $.each(chapters,function(index,chap) {
+        //for (var i=0; i< chapters.length;i++) {
         console.log("creating chapter");
         var a = pop.chapter({
-            start: chapters[i].start,
-            end: chapters[i].end,
-            captions: chapters[i].captions,
-            id: i,
+            start: chap.start,
+            end: chap.end,
+            captions: chap.captions,
+            id: index,
             //target: "caption"
         });
-    }
+    });
 
     /*
     // populate captions

@@ -1,19 +1,19 @@
 var title = "Malaysia jet crashes in east Ukraine conflict zone";
 
 var chapters = [ 
-{"start":"0","end":"15","title":"overview","captions":[
+{"start":"0","end":"15","title":"Overview","captions":[
     {"start":"0","end":"5","body":"A Malaysia Airlines jet carrying 295 people has crashed in east Ukraine on a flight from Amsterdam to Kuala Lumpur."  }, 
         {"start":"5","end":"9","body":"Flight MH17 had been due to enter <a href='civil'>Russian airspace</a> when contact was lost."  }, 
         {"start":"9","end":"15","body":"US and Ukrainian officials said they believed the plane had been brought down by a missile."  }, 
         ]},
         //crash site
-{"start":"15","end":"33","title":"crash site","captions":[
+{"start":"15","end":"33","title":"Crash Site","captions":[
     {"start":"0","end":"6","body":"The <a href='region'>crash site</a> is in an area controlled by Ukraine's separatist rebels"  }, 
     {"start":"6","end":"12","body":"At least <a href='passengers'>100 bodies</a> have been found so far at the scene"},
     {"start":"12","end":"17","body":"with wreckage spread across an area of up to about 15km (nine miles) in diameter."},
     ]}, 
     //politics
-{"start":"33","end":"46","title":"reaction","captions":[
+{"start":"33","end":"46","title":"Accusations","captions":[
     {"start":"0","end":"6","body":"Foreign Minister Pavlo Klimkin told the BBC he had intercepted phone conversations that proved the <a href='missile'>plane was shot down</a> by pro-Russian separatists."  }, 
     {"start":"6","end":"12","body":"But Russian President Vladimir Putin blamed the Ukraine government for restarting military operations in the area, where it is trying to regain control from pro-Russian rebels."  }, 
     //{"start":"0","end":"9","body":"Ukrainian President Petro Poroshenko said it was an \"act of terrorism\""  }, 

@@ -4,14 +4,14 @@ html,body {
 
 body{
     position: relative;
-    background-color: #000;
+    background-color: #EEE;
     font-family: 'Lato', sans-serif;
-    color: #fff;
+    color: #333;
     margin: 0px;
 }
 
 a {
-    color: #f60;
+    color: #E8210C;
 }
 
 #container {
@@ -42,6 +42,7 @@ video {
     z-index: 1;
     background-color: rgba(0,0,0,0.25);
     font-size:50pt;
+    color:#fff;
     line-height:150px;
     text-align: center;
 }
@@ -74,32 +75,52 @@ video {
     display:inline-block;
     height:20px;
     padding: 5px;
-    border-right: #333 1px solid;
+    border-right: #EEE 1px solid;
     white-space: nowrap;
     overflow:hidden;
+    position:relative;
+    color:#FFF;
 }
+.timelineEl .bg {
+    background-color:#E8210C;
+    z-index:1;
+    width:0px;
+    height:100%;
+    position:absolute;
+    top:0px;
+    left:0px;
+}
+.timelineEl .con {
+    position:relative;
+    z-index:2;
 
+}
 .timelineLink {
-    background-color:#333;
+    background-color:#EEE;
     display:inline-block;
     height:15px;
     padding: 5px;
 }
 .timelineLink.unclicked {
-    background-color:#888;
+    background-color:#FFA849;
 }
 
 .typeRich {
-    background-color:#888;
+    background-color:#FFA849;
+}
+.typeRich.currentEl {
+    background-color:#FA7E00;
 }
 
 .typeVid {
-    background-color:#444;
+    background-color:#E8210C;
 }
 
-.currentEl {
-    background-color:#f60;
+
+.typeVid.currentEl {
+    background-color:#FF967B;
 }
+
 
 #captionholder{
     position:relative;
@@ -108,7 +129,7 @@ video {
 }
 #caption {
     position:absolute;
-    background-color:#111;
+    background-color:#fff;
     width: 300px;
     padding: 0px 10px;
     box-sizing: border-box;
@@ -166,7 +187,7 @@ video {
 }
 
 #title{
-    background-color:#111;
+   /* background-color:#111;*/
     width:100%;
     padding: 0px 10px;
     box-sizing: border-box;
@@ -187,7 +208,7 @@ h1 {
     height:100%;
     top: 0px;
     left: 0px;
-    z-index: 2;
+    z-index: 99;
     background-color: rgba(0,0,0,0.9);
     text-align:center;
 

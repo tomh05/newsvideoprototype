@@ -58,21 +58,16 @@ $( document ).ready(function() {
 
             console.log("current el is "+this.currentElement);
             var scroll = $("#timelineDiv .timelineEl:eq("+this.currentElement+")").position().left - 30;
-            console.log("scrolling to "+scroll+"px");
             $("#timelineContainer").animate({scrollLeft: scroll + "px"},{duration: 200, queue: false});
 
             var newEl = this.timeline.getAt(n);
             if (newEl.type=="vidChapter") {
-                console.log("vidChapter");
                 pop.currentTime(chapters[newEl.id].start);
                 playVideo();
-                console.log("will queue for "+n +" at "+chapters[newEl.id].end);
-                //pop.cue(chapters[newEl.id].end-1,this.endChapter(n));
                 $("#videoholder").show();
                 $("#richtextholder").hide();
 
             } else if (newEl.type=="richText") {
-                console.log("richText");
                 pauseVideo(false);
                 $("#richtextholder").html(richtexts[newEl.id].body);
                 $("#richtextholder").show();
@@ -122,7 +117,7 @@ $( document ).ready(function() {
             console.log(newLocation);
             $("#timelineDiv .timelineEl:eq("+newLocation+")").after(newDiv);
             $("#timelineDiv .timelineEl:eq("+(newLocation+1)+")").animate({"max-width": "200px"},{duration:400,queue:false});
-            this.timeline.addElementAt(at,type,id);
+            this.timeline.addElementAt(newLocation+1,type,id);
 
         }
 
@@ -134,6 +129,11 @@ $( document ).ready(function() {
                 var e = chapters[curEl.id].end;
                 var percent = 100 * (t-s) / (e-s);
             $("#timelineDiv .timelineEl:eq("+this.currentElement+") .bg").width(percent+"%");
+            if (percent>50){
+                $(".typeVid.currentEl").addClass("filled");
+            } else {
+                $(".typeVid.currentEl").removeClass("filled");
+            }
             }
         }
         this.restartVideoChapter = function() {
@@ -280,10 +280,13 @@ $( document ).ready(function() {
             },
             start: function( event, options ){
 
+                console.log("chapter start "+options.id + " @ "+pop.currentTime() +"s" );
             },
             end: function( event, options ){
-                console.log("chapter end");
+                console.log("chapter end "+options.id+ " @ "+pop.currentTime() +"s" );
+                if (pop.currentTime()>options.start) {
                 controller.endChapter(options.id);
+                }
             },
             _teardown: function( options ) {
                 document.getElementById( options.target ) && document.getElementById( options.target ).removeChild( options._container );

@@ -27,7 +27,6 @@ a {
 
 #richtextholder {
     padding: 0px 10px;
-    border-top:#FA7E00 2px solid;
     height:320px;
     overflow-y: auto;
 }
@@ -88,7 +87,7 @@ video {
     padding: 5px;
     border-right: #EEE 1px solid;
     white-space: nowrap;
-    overflow:hidden;
+    /*overflow-x:hidden;*/
     position:relative;
     color:#FFF;
 }
@@ -122,17 +121,58 @@ video {
 }
 .typeRich.currentEl {
     /*background-color:#FA7E00;*/
-    text-decoration:underline;
+}
+
+.typeRich.currentEl:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 10px 10px 0;
+    border-color: #FA7E00 transparent;
+    display: block;
+    width: 0;
+    z-index: 30;
+    margin-left: -10px;
+    bottom: -9px;
+    left: 50%;
 }
 
 .typeVid {
     background-color:#E8210C;
 }
 
+.typeVid.currentEl:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 10px 10px 0;
+    border-color: #FF967B transparent;
+    display: block;
+    width: 0;
+    z-index: 30;
+    margin-left: -10px;
+    bottom: -9px;
+    left: 50%;
+}
+
+.typeVid.currentEl.filled:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 10px 10px 0;
+    border-color: #E8210C transparent;
+    display: block;
+    width: 0;
+    z-index: 30;
+    margin-left: -10px;
+    bottom: -9px;
+    left: 50%;
+}
+
+
 
 .typeVid.currentEl {
     background-color:#FF967B;
-    text-decoration:underline;
 }
 
 
@@ -146,6 +186,7 @@ video {
     background-color:#fff;
     width: 300px;
     padding: 0px 10px;
+    padding-bottom:10px;
     box-sizing: border-box;
     left:0px;
     top:0px;

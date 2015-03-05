@@ -35,6 +35,13 @@ $( document ).ready(function() {
         this.length = function() {
             return this.list.length;
         }
+        // find if an element is already in timeline
+        this.findID = function(_id) {
+            for (var i=0;i<this.list.length;i++) {
+                if (this.list[i].id==_id) return true;
+            }
+            return false;
+        }
     };
 
     // view controller
@@ -105,11 +112,16 @@ $( document ).ready(function() {
         }
 
         this.addElementAt = function(at,type,id) {
+            //if (this.timeline.findID(id)==false) {
             var title = richtexts[id].title;
             console.log("creating new div with id "+id);
             var newDiv = "<div class=\"timelineEl typeRich\" style=\"max-width:0px\">"+title+"</div>";
-            $("#timelineDiv .timelineEl:eq("+this.currentElement+")").after(newDiv);
-            $("#timelineDiv .timelineEl:eq("+(this.currentElement+1)+")").animate({"max-width": "200px"},{duration:400,queue:false});
+            var newLocation = this.currentElement;
+            console.log(newLocation);
+            while (newLocation<this.timeline.length()-1 && this.timeline.getAt(newLocation+1).type=="richText") newLocation++;
+            console.log(newLocation);
+            $("#timelineDiv .timelineEl:eq("+newLocation+")").after(newDiv);
+            $("#timelineDiv .timelineEl:eq("+(newLocation+1)+")").animate({"max-width": "200px"},{duration:400,queue:false});
             this.timeline.addElementAt(at,type,id);
 
         }
@@ -244,7 +256,12 @@ $( document ).ready(function() {
                 $("#caption").html(options.text);
                 $("#caption a").replaceWith(function(){
                     var id = $(this).attr("href");
+                    // check if it should be clickable or not
+                    if (controller.timeline.findID(id)==true) {
+                    return $("<div class=\"timelineLink\" data-id=\""+id+"\" />").append($(this).contents());
+                    } else {
                     return $("<div class=\"timelineLink unclicked\" data-id=\""+id+"\" />").append($(this).contents());
+                    }
                 });
             },
             end: function( event, options ){

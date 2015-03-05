@@ -21,6 +21,17 @@ a {
     overflow: hidden;
 }
 
+#videoholder {
+}
+
+
+#richtextholder {
+    padding: 0px 10px;
+    border-top:#FA7E00 2px solid;
+    height:320px;
+    overflow-y: auto;
+}
+
 video {
     width: 100% !important;
     height: auto !important;
@@ -106,10 +117,12 @@ video {
 }
 
 .typeRich {
-    background-color:#FFA849;
+    /*background-color:#FFA849;*/
+    background-color:#FA7E00;
 }
 .typeRich.currentEl {
-    background-color:#FA7E00;
+    /*background-color:#FA7E00;*/
+    text-decoration:underline;
 }
 
 .typeVid {
@@ -119,6 +132,7 @@ video {
 
 .typeVid.currentEl {
     background-color:#FF967B;
+    text-decoration:underline;
 }
 
 

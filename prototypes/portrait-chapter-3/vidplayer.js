@@ -111,10 +111,12 @@ $( document ).ready(function() {
             var title = richtexts[id].title;
             console.log("creating new div with id "+id);
             var newDiv = "<div class=\"timelineEl typeRich\" style=\"max-width:0px\">"+title+"</div>";
+            var newLocation = this.timeline.length()-1;
+            /*
+             * Old code that put new element after current section
             var newLocation = this.currentElement;
-            console.log(newLocation);
             while (newLocation<this.timeline.length()-1 && this.timeline.getAt(newLocation+1).type=="richText") newLocation++;
-            console.log(newLocation);
+            */
             $("#timelineDiv .timelineEl:eq("+newLocation+")").after(newDiv);
             $("#timelineDiv .timelineEl:eq("+(newLocation+1)+")").animate({"max-width": "200px"},{duration:400,queue:false});
             this.timeline.addElementAt(newLocation+1,type,id);
@@ -186,18 +188,6 @@ $( document ).ready(function() {
         controller.updateTimelineBackground();
     });
 
-    /*
-
-       for (var i=0;i<chapters.length;i++) {
-       $("#chapterIndicator ul").append("<li>"+chapters[i].title+"</li>");
-       }
-    //$("#chapterIndicator li").width( (300/chapters.length) + "px");
-    $("#chapterIndicator li:eq(0)").addClass("chapterCurrent");
-
-
-    var currentChapter = 0;
-
-*/
     function getUrlParameter(sParam) {
         var sPageURL = window.location.search.substring(1);
         var sURLVariables = sPageURL.split('&');
@@ -254,6 +244,9 @@ $( document ).ready(function() {
                 //$( options._container ).fadeIn(); // <---
                 //console.log(options);
                 $("#caption").html(options.text);
+
+                /*
+                 * Old code: replaced a elements with divs
                 $("#caption a").replaceWith(function(){
                     var id = $(this).attr("href");
                     // check if it should be clickable or not
@@ -263,6 +256,7 @@ $( document ).ready(function() {
                     return $("<div class=\"timelineLink unclicked\" data-id=\""+id+"\" />").append($(this).contents());
                     }
                 });
+                */
             },
             end: function( event, options ){
                 //console.log("caption end");
@@ -279,8 +273,19 @@ $( document ).ready(function() {
                 var target = document.getElementById( options.target );
             },
             start: function( event, options ){
-
                 console.log("chapter start "+options.id + " @ "+pop.currentTime() +"s" );
+
+                    $("#links").html("");
+                $.each(options.links,function(i,linkID){
+                    // check if it should be clickable or not
+                    if (controller.timeline.findID(linkID)==true) {
+                        console.log("appending "+linkID+ "  " +help[linkID].title);
+                    $("#links").append("<div class=\"timelineLink\" data-id=\""+linkID+"\">"+help[linkID].title+"</>");
+                    } else {
+                    $("#links").append("<div class=\"timelineLink unclicked\" data-id=\""+linkID+"\">" + help[linkID].title +"</>");
+                    }
+
+                });
             },
             end: function( event, options ){
                 console.log("chapter end "+options.id+ " @ "+pop.currentTime() +"s" );
@@ -303,6 +308,7 @@ $( document ).ready(function() {
             start: chap.start,
             end: chap.end,
             //captions: chap.captions,
+            links: chap.links,
             id: i,
         });
         // populate captions
@@ -340,6 +346,28 @@ $( document ).ready(function() {
     $('video').on('loadeddata',function(){
         $("#playblocker").fadeOut();
         controller.goToElement(0);
+    });
+
+    //clicking captions
+        $(document).on("click","#caption a", function(e) {
+            e.preventDefault();
+            var key = $(this).attr("href");
+            console.log("clicked"+help[key].body);
+            pauseVideo();
+            $("#container").animate({ top: "-300px" }, 400);
+            $("#help").html(help[key].body);
+            $("#help").fadeIn();
+        });
+
+    $("#help").swipe({
+        swipeDown:function(event, direction, distance, duration, fingerCount){
+            $("#container").animate({ top: "0px" }, 400);
+            $("#help").fadeOut(function(){
+            $("#help").html("");
+            playVideo();
+            });
+        },
+        threshold:50
     });
 
 });

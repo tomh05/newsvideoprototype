@@ -184,6 +184,7 @@ video {
 }
 #caption {
     background-color:#fff;
+    height:95px;
     width: 300px;
     padding: 0px 10px;
     padding-bottom:10px;
@@ -208,6 +209,7 @@ video {
     width: 300px;
     padding: 5px 10px;
     box-sizing: border-box;
+    height:35px;
 }
 
 #prevcaption {

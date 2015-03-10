@@ -20,6 +20,7 @@ $( document ).ready(function() {
         $("#paused").fadeIn();
     }
 
+    // holds data for timeline
     var Timeline = function(){
         this.list = [];
         // list can be objects type vidChapter or richText
@@ -74,24 +75,27 @@ $( document ).ready(function() {
                 $("#videoholder").hide();
             } 
         };
+        // pause the video at the end of each chapter
         this.endChapter = function(chapterID) {
             //only pause if video reached natural end
-            console.log("chapid "+chapterID + ", curel "+this.timeline.getAt(this.currentElement).id);
             if (chapterID == this.timeline.getAt(this.currentElement).id) { 
                     pauseVideo(true);
             }
         }
+        // go to next timeline element
         this.nextElement = function() {
             if (this.currentElement < this.timeline.length()-1) {
                 this.goToElement(this.currentElement+1);
             }
         };
+        // go to previous timeline element
         this.prevElement = function() {
             if (this.currentElement > 0) {
                 this.goToElement(this.currentElement-1);
             }
         };
 
+        // create div tags in timeline bar from the timeline array.
         this.populateTimeline = function() {
             for (var i=0;i<this.timeline.length();i++) {
                 console.log("t "+this.timeline.getAt(i).type );
@@ -106,6 +110,7 @@ $( document ).ready(function() {
             $("#timelineDiv .timelineEl:eq(0)").addClass("currentEl");
         }
 
+        // insert a new element into the timeline
         this.addElementAt = function(at,type,id) {
             //if (this.timeline.findID(id)==false) {
             var title = richtexts[id].title;
@@ -123,6 +128,7 @@ $( document ).ready(function() {
 
         }
 
+        // show video progress in a timeline bar element
         this.updateTimelineBackground = function() {
             var curEl = this.timeline.getAt(this.currentElement);
             if (curEl.type=="vidChapter") {
@@ -130,6 +136,7 @@ $( document ).ready(function() {
                 var s = chapters[curEl.id].start;
                 var e = chapters[curEl.id].end;
                 var percent = 100 * (t-s) / (e-s);
+                if (percent>100) percent=100;
             $("#timelineDiv .timelineEl:eq("+this.currentElement+") .bg").width(percent+"%");
             if (percent>50){
                 $(".typeVid.currentEl").addClass("filled");
@@ -138,6 +145,7 @@ $( document ).ready(function() {
             }
             }
         }
+        // go back to start of chapter and play from there
         this.restartVideoChapter = function() {
             var el = this.timeline.getAt(this.currentElement);
             if (el.type=="vidChapter") {
@@ -243,7 +251,9 @@ $( document ).ready(function() {
                 //console.log("caption start");
                 //$( options._container ).fadeIn(); // <---
                 //console.log(options);
-                $("#caption").html(options.text);
+                if (controller.currentElement == options.chapter) {
+                    $("#caption").html(options.text);
+                }
 
                 /*
                  * Old code: replaced a elements with divs
@@ -318,6 +328,7 @@ $( document ).ready(function() {
                 start: parseInt(chapters[i].start,10) + parseInt(caps[j].start,10),
                 end: parseInt(chapters[i].start,10) + parseInt(caps[j].end,10),
                 text: caps[j].body,
+                chapter:i,
                 id: j,
                 target: "caption"
             });
